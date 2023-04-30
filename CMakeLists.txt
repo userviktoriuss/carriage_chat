@@ -3,12 +3,12 @@ project(CarriageChat LANGUAGES CXX)
 
 add_executable(
         CarriageChatClient
-        ClientApp/ClientApp.cpp
-        ClientApp/ClientApp.h)
+        src/ClientApp/ClientApp.cpp
+        src/ClientApp/ClientApp.h)
 target_link_libraries(CarriageChatClient wsock32 ws2_32)
 
 add_executable(
         CarriageChatHost
-        HostApp/HostApp.cpp
+        src/HostApp/HostApp.cpp
 )
 target_link_libraries(CarriageChatHost wsock32 ws2_32)

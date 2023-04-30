@@ -4,8 +4,8 @@
 #pragma comment(lib, "Ws2_32.lib")
 #include <iostream>
 #include "ClientApp.h"
-#include <WinSock2.h>
-#include <Ws2tcpip.h>
+#include <winsock2.h>
+#include <ws2tcpip.h>
 #include <string>
 #include <thread>
 
@@ -60,11 +60,11 @@ int main()
     while (text != "exit")
     {
         auto msg = text.c_str();
-        send(connection_socket, msg, MESSAGE_LENGTH, 0); // такая херня, надо точно переписать
+        send(connection_socket, msg, MESSAGE_LENGTH, 0); // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         std::getline(std::cin, text);
     }
 
-    closesocket(connection_socket); // в случае удачного завершения операции возвращает нулевое значение.
+    closesocket(connection_socket); // пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     WSACleanup();
 }
 
@@ -75,7 +75,7 @@ int load_library() {
     WSADATA wsaData;
     int err;
 
-    // Пытаемся подгрузить библиотеку
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     wVersionRequested = MAKEWORD(2, 2);
     err = WSAStartup(wVersionRequested, &wsaData);
 
@@ -84,7 +84,7 @@ int load_library() {
         return 1;
     }
 
-    // Проверяем, что загрузили нужную версию
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     if (LOBYTE(wsaData.wVersion) != 2 || HIBYTE(wsaData.wVersion) != 2) {
         std::cout << "Could not find the required version of Winsock.dll\n";
         WSACleanup();
