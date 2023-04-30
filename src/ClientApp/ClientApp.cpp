@@ -2,6 +2,7 @@
 
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #pragma comment(lib, "Ws2_32.lib")
+
 #include <iostream>
 #include "ClientApp.h"
 #include <winsock2.h>
@@ -14,8 +15,7 @@
 
 // --------- Methods defenition. ----------
 
-int main()
-{
+int main() {
     std::cout << "Welcome to chat client app.\n";
 
     int res = load_library();
@@ -34,7 +34,7 @@ int main()
     connection_addr.sin_family = AF_INET;
     connection_addr.sin_addr.s_addr = inet_addr(SERVER_IP);
     connection_addr.sin_port = htons(SERVER_PORT);
-    int connection_status = connect(connection_socket, (SOCKADDR*)&connection_addr, sizeof(connection_addr));
+    int connection_status = connect(connection_socket, (SOCKADDR *) &connection_addr, sizeof(connection_addr));
 
     if (connection_status != 0) {
         std::cout << "Unable to connect to the host\n";
@@ -57,8 +57,7 @@ int main()
     std::cin.get();
     std::getline(std::cin, text);
     text.resize(MESSAGE_LENGTH, '\0');
-    while (text != "exit")
-    {
+    while (text != "exit") {
         auto msg = text.c_str();
         send(connection_socket, msg, MESSAGE_LENGTH, 0); // ����� �����, ���� ����� ����������
         std::getline(std::cin, text);
@@ -91,5 +90,11 @@ int load_library() {
         return 1;
     }
     std::cout << "Initialized library successfuly\n";
+    return 0;
+}
+
+int process_authentification(user_data &data) {
+    std::cout << "Enter your nickname(not more than 9 non-space symbols): ";
+    std::cin >> data.nickname;
     return 0;
 }
