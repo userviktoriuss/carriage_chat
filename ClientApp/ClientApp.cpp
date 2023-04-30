@@ -3,43 +3,14 @@
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #pragma comment(lib, "Ws2_32.lib")
 #include <iostream>
+#include "ClientApp.h"
 #include <WinSock2.h>
 #include <Ws2tcpip.h>
-#include <stdio.h>
 #include <string>
 #include <thread>
-#include <vector>
 
 #define SERVER_IP "127.0.0.1"
 #define SERVER_PORT 8080
-#define MESSAGE_LENGTH 256
-#define MAX_NICK_LENGTH 10
-
-// ---------- Structures. ----------
-struct user_data {
-    char nickname[MAX_NICK_LENGTH];
-};
-
-struct message_data {
-    user_data sender;
-    char message[MESSAGE_LENGTH];
-    // TODO: время отправки
-    // TODO: конкретный чат
-};
-
-// ---------- Methods declaration. ----------
-int load_library();
-
-/// <summary>
-/// Processes user authentification.
-/// </summary>
-/// <param name="data">Out parameter about user's account.</param>
-/// <returns>0, if authentification went ok, error code otherwise.</returns>
-int process_authentification(user_data& data) {
-    std::cout << "Enter your nickname(not more than 9 non-space symbols): "; 
-    std::cin >> data.nickname;
-    return 0;
-}
 
 // --------- Methods defenition. ----------
 
@@ -80,7 +51,7 @@ int main()
         closesocket(connection_socket);
         WSACleanup();
         return 1;
-    } // TODO: сериализовать структуру message и хранить в ней инфу про отправителя и текст
+    } // TODO: serialize structure for message
 
     std::string text;
     std::cin.get();
