@@ -29,10 +29,6 @@ int load_library();
 /// </summary>
 /// <param name="data">Out parameter about user's account.</param>
 /// <returns>0, if authentification went ok, error code otherwise.</returns>
-int process_authentification(user_data& data) {
-    std::cout << "Enter your nickname(not more than 9 non-space symbols): ";
-    std::cin >> data.nickname;
-    return 0;
-}
+int process_authentification(user_data& data);
 
 #endif //CARRIAGECHAT_CLIENTAPP_H

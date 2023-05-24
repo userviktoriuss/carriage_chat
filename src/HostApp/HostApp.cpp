@@ -3,13 +3,10 @@
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <string>
+#include "HostApp.h"
 #include <thread>
 #include <vector>
 
-#define CLIENTS_QUEUE_MAX_SIZE 128
-#define SERVER_IP "127.0.0.1"
-#define SERVER_PORT 8080
-#define MESSAGE_LENGTH 256
 
 int load_library();
 void start_user_chat(SOCKET client_socket, sockaddr_in clientAddr);
